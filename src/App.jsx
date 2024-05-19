@@ -5,16 +5,18 @@ import Month from "./components/Month";
 import GlobalContext from "./context/GlobalContext";
 import dayjs from "dayjs";
 import Modal from "./components/Modal";
+import Header from "./components/Header";
+import Sidebar from "./components/SideBar";
+import SmallCalander from "./components/SmallCalander";
 
 function App() {
   const { monthIndex, setMonthIndex } = React.useContext(GlobalContext);
   const [currentMonth, setCurrentMonth] = React.useState(monthIndex);
+  const [isOpen, setIsOpen] = React.useState(false);
   const [currentMonthDate, setCurrentMonthDate] = React.useState(
     getMonth(monthIndex)
   );
-
-  const [isOpen, setIsOpen] = React.useState(false);
-
+  const [sidebarOpen, setSidebarOpen] = React.useState(true);
   useEffect(() => {
     setCurrentMonthDate(getMonth(monthIndex));
     setCurrentMonth(monthIndex);
@@ -46,10 +48,9 @@ function App() {
   ];
 
   return (
-    <React.Fragment>
-      <Modal />
-      <div className="border border-gray-200 border-b-0 rounded-xl flex flex-col items-start font-inter">
-        <p className="text-xl  p-4">Calender</p>
+    <>
+      {/* <div className="border border-gray-200 border-b-0 rounded-xl flex flex-col items-start font-inter">
+        <p className="text-xl p-4">Calender</p>
         <div className="border-y border-gray-200 px-4 py-3 self-start w-full flex justify-between">
           <div className="flex  gap-5">
             <button className="border flex gap-2 items-center rounded-md border-gray-200 p-2">
@@ -107,28 +108,10 @@ function App() {
               </button>
             </div>
           </div>
-          {/* <button className="border rounded-md border-gray-200 p-2 flex items-center gap-2">
-            {" "}
-            Months
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              className="bi bi-chevron-down"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fillRule="evenodd"
-                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"
-              />
-            </svg>
-          </button> */}
-
           <div className="relative inline-block text-left">
             <div>
               <button
-                className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-600 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                className="inline-flex w-full justify-center gap-x-1.5 rounded-md  px-3 py-2 text-sm font-semibold text-gray-600 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                 onClick={() => setIsOpen(!isOpen)}
               >
                 Months
@@ -146,18 +129,13 @@ function App() {
                 </svg>
               </button>
             </div>
-
             {isOpen && (
               <div className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <div className="py-1" role="none">
                   {months.map((m, i) => (
                     <a
                       key={i}
-                      href="#"
                       className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900"
-                      role="menuitem"
-                      tabindex="-1"
-                      id={`menu-item-${i}`}
                       onClick={() => {
                         setMonthIndex(i);
                         setCurrentMonth(i);
@@ -173,8 +151,20 @@ function App() {
           </div>
         </div>
         <Month month={currentMonthDate} setCurrentMonth={setCurrentMonthDate} />
+      </div> */}
+      {/*\ <div className="flex justify-start items-start"> */}
+      {/* <Scheduler /> */}
+      {/* </div> */}
+      <Header month={"May"} year={"2024"} />
+      <div className="flex">
+        <Sidebar />
+        <Month month={currentMonthDate} setCurrentMonth={setCurrentMonthDate} />
       </div>
-    </React.Fragment>
+
+      {/* <div className="flex items-center justify-center ">
+        <SmallCalander />
+      </div> */}
+    </>
   );
 }
 

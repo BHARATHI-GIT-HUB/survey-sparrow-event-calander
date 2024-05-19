@@ -11,10 +11,10 @@ export default function Day({ day, rowIndex }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const eventTypeColors = {
-    meeting: "border-[#34a4eb]",
-    appointment: "border-green-500",
-    reminder: "border-[#edca4a]",
-    task: "border-purple-500",
+    meeting: "bg-[#34a4eb]",
+    appointment: "bg-green-500",
+    reminder: "bg-[#edca4a]",
+    task: "bg-purple-500",
   };
 
   const getCurrentDay = (day) => {
@@ -29,7 +29,6 @@ export default function Day({ day, rowIndex }) {
   useEffect(() => {
     const dayEvents = data.filter((e) => e.date === day.format("YYYY-MM-DD"));
     setEvents(dayEvents);
-    console.log("day envent", dayEvents, events);
   }, [day]);
 
   const calculateEventCardHeight = () => {
@@ -43,46 +42,65 @@ export default function Day({ day, rowIndex }) {
   };
 
   return (
-    <div className={`border border-gray-200 flex flex-col min-h-[230px]`}>
+    <div className={`border border-gray-200  flex flex-col  `}>
       {rowIndex === 0 && (
         <header className="border-b border-gray-200 p-2 text-start">
           <p className="text-sm mt-1">{day.format("ddd").toUpperCase()}</p>
         </header>
       )}
       <div
-        className={`text-sm m-3 p-[4px] px-[6px]  text-start w-max ${getCurrentDay(
-          day
-        )}`}
+        className={`text-sm m-3 p-[4px] px-[6px]  w-max ${getCurrentDay(day)}`}
       >
         {day.format("DD")}
       </div>
+      {/* {console.info(events.length > 0, day)} */}
       {events.length > 0 &&
         events.slice(0, 2).map((e, i) => (
           <div
             key={i}
-            className={`mx-2 p-2 border-x-4 border  rounded-[5px] mb-2 overflow-hidden  pb-2 ${
+            className={` mx-2 px-2 py-1 text-white rounded-[5px] mb-2 overflow-hidden  pb-2 ${
               eventTypeColors[e.type] || "bg-gray-400"
             }`}
-            style={{
-              // maxWidth: "calc(100% - 16px)",
-              maxHeight: calculateEventCardHeight(),
-            }}
+            // style={{
+            //   maxWidth: "calc(100% - 16px)",
+            //   maxHeight: calculateEventCardHeight(),
+            // }}
+          >
+            <p className="font-semibold text-xs">{e.title}</p>
+            {/* <p className="text-xs">{`${e.startTime} - ${e.endTime}`}</p> */}
+          </div>
+        ))}
+      {/* {events.length > 0 &&
+        events.slice(0, 2).map((e, i) => {
+          {
+            console.info(e);
+          }
+          <div
+            key={i}
+            className={`mx-2 p-2 border-x-4 border  rounded-[5px] mb-2  pb-2 ${
+              eventTypeColors[e.type] || "bg-gray-400"
+            }`}
+            style={
+              {
+                // maxWidth: "calc(100% - 16px)",
+                // maxHeight: calculateEventCardHeight(),
+              }
+            }
             onClick={() => setIsModalOpen(true)}
           >
             <p
               className={`font-semibold text-xs ${
-                isEventOver(e) ? "line-through" : ""
+                isEventOver(e) && "line-through"
               }`}
             >
               {e.title}
             </p>
             <p className="text-xs">{`${e.startTime} - ${e.endTime}`}</p>
-            <p className="text-xs">{e.description}</p>
-          </div>
-        ))}
+          </div>;
+        })} */}
       {events.length > 3 && (
         <div
-          className={`mx-2 p-2  rounded-md mb-2 overflow-hidden cursor-pointer bg-purple-500 `}
+          className={`mx-2 px-2 py-1  rounded-md mb-2 overflow-hidden cursor-pointer bg-purple-500 `}
           style={{ maxHeight: "60px" }}
         >
           <Modal
@@ -92,15 +110,14 @@ export default function Day({ day, rowIndex }) {
             day={day}
           />
 
-          <p
+          <button
             className="font-semibold text-white text-xs"
             onClick={() => {
               setIsModalOpen(true);
-              console.log(isModalOpen);
             }}
           >
             +{events.length - 2} more
-          </p>
+          </button>
         </div>
       )}
     </div>

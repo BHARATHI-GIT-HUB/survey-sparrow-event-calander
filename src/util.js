@@ -31,3 +31,13 @@ export const isEventOver = (event) => {
   const currentTime = dayjs();
   return currentTime.isAfter(startTime) && currentTime.isAfter(endTime);
 };
+
+export function handlePrevMonth(monthIndex, setMonthIndex, setCurrentMonth) {
+  setMonthIndex(monthIndex - 1);
+  setCurrentMonth(monthIndex - 1);
+}
+
+export function handleNextMonth(monthIndex, setMonthIndex, setCurrentMonth) {
+  setMonthIndex(monthIndex + 1);
+  setCurrentMonth(monthIndex + 1);
+}

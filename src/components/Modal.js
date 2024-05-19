@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import PropTypes from "prop-types";
 import { isEventOver } from "../util";
 
@@ -14,9 +13,7 @@ export default function Modal({ isModalOpen, setIsModalOpen, events, day }) {
   const close = () => {
     setIsModalOpen(false);
   };
-  {
-    console.log(events);
-  }
+
   return (
     <div>
       {isModalOpen && (
@@ -57,7 +54,7 @@ export default function Modal({ isModalOpen, setIsModalOpen, events, day }) {
                                 className={`w-2 h-2 ${
                                   eventTypeColors[e.type]
                                 } rounded-full`}
-                              ></p>{" "}
+                              ></p>
                               {e.title}
                             </h3>
 
@@ -67,9 +64,7 @@ export default function Modal({ isModalOpen, setIsModalOpen, events, day }) {
                             </p>
                             <div className="mt-2">
                               <p className="text-sm text-gray-500">
-                                Are you sure you want to deactivate your
-                                account? All of your data will be permanently
-                                removed. This action cannot be undone.
+                                {e.description}
                               </p>
                             </div>
                           </li>
