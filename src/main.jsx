@@ -5,9 +5,9 @@ import "./index.css";
 import ContexWrapper from "./context/ContexWrapper.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <ContexWrapper>
-      <App />
-    </ContexWrapper>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <ContexWrapper>
+    <App />
+  </ContexWrapper>
+  // </React.StrictMode>
 );

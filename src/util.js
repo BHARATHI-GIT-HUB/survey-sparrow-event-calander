@@ -16,3 +16,18 @@ export const getMonth = (month = dayjs().month()) => {
 
   return dayMatrix;
 };
+
+export const isEventOver = (event) => {
+  const startTime = dayjs(
+    event.date + " " + event.startTime,
+    "YYYY-MM-DD hh:mm A",
+    true
+  );
+  const endTime = dayjs(
+    event.date + " " + event.endTime,
+    "YYYY-MM-DD hh:mm A",
+    true
+  );
+  const currentTime = dayjs();
+  return currentTime.isAfter(startTime) && currentTime.isAfter(endTime);
+};

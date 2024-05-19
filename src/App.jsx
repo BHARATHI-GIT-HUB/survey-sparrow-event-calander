@@ -161,6 +161,7 @@ function App() {
                       onClick={() => {
                         setMonthIndex(i);
                         setCurrentMonth(i);
+                        setIsOpen(false);
                       }}
                     >
                       {m}
