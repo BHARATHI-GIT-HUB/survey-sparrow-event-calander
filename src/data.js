@@ -1,5 +1,5 @@
 const eventColors = {
-  meeting: "#4ade80",
+  meeting: "#38bdf8",
   appointment: "#4ade80",
   reminder: "#edca4a",
   task: "#a78bfa",
@@ -118,6 +118,16 @@ export const data = [
       "Discuss new shipment details and timelines. Clarify any outstanding issues with the current order.",
   },
   {
+    title: "Doc Appointment",
+    colour: eventColors.appointment,
+    date: "2024-05-20",
+    type: "appointment",
+    startTime: "03:00 PM",
+    endTime: "03:30 PM",
+    description:
+      "Discuss new shipment details and timelines. Clarify any outstanding issues with the current order.",
+  },
+  {
     title: "Team Building Activity",
     colour: eventColors.meeting,
     date: "2024-05-21",
@@ -161,6 +171,57 @@ export const data = [
     title: "Update Task List",
     colour: eventColors.task,
     date: "2024-05-21",
+    type: "task",
+    startTime: "07:00 PM",
+    endTime: "08:00 PM",
+    description:
+      "Review and update the task list for the week. Prioritize tasks based on deadlines and importance.",
+  },
+  {
+    title: "Team Strategy Meeting",
+    colour: eventColors.meeting,
+    date: "2024-05-22",
+    type: "meeting",
+    startTime: "09:00 AM",
+    endTime: "10:00 AM",
+    description:
+      "Discussing quarterly goals and strategic initiatives. All department heads are required to attend.",
+  },
+
+  {
+    title: "Project Deadline",
+    colour: eventColors.reminder,
+    date: "2024-05-22",
+    type: "reminder",
+    startTime: "02:00 PM",
+    endTime: "03:15 PM",
+    description:
+      "Final submission for the client project is due today. Ensure all documentation is complete and submitted.",
+  },
+  {
+    title: "Doctor's Appointment",
+    colour: eventColors.appointment,
+    date: "2024-05-22",
+    type: "appointment",
+    startTime: "11:00 AM",
+    endTime: "12:00 PM",
+    description:
+      "Routine check-up with Dr. Smith at the downtown clinic. Remember to bring medical reports from last visit.",
+  },
+  {
+    title: "Update Task List",
+    colour: eventColors.task,
+    date: "2024-05-22",
+    type: "task",
+    startTime: "05:00 PM",
+    endTime: "06:00 PM",
+    description:
+      "Review and update the task list for the week. Prioritize tasks based on deadlines and importance.",
+  },
+  {
+    title: "Update Task List",
+    colour: eventColors.task,
+    date: "2024-05-22",
     type: "task",
     startTime: "07:00 PM",
     endTime: "08:00 PM",
