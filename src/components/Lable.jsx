@@ -9,8 +9,8 @@ export default function Lable() {
   };
 
   return (
-    <div>
-      <h3 className="text-gray-400 text-2xl my-2"> Lables</h3>
+    <div className="mx-2">
+      <h3 className="text-gray-400 text-2xl py-2">Lables</h3>
       <ul className="flex flex-col gap-y-3">
         {Object.entries(eventTypeColors).map(([event, colour]) => (
           <li key={event} className="flex items-center gap-2">

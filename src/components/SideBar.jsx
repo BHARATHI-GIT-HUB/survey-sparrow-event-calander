@@ -5,13 +5,7 @@ import Lable from "./Lable";
 
 export default function Sidebar({ isSlider, setIsSlider }) {
   return (
-    <div
-      style={{
-        minHeight: "calc(100vh - 8vh)",
-        maxHeight: "calc(100vh - 8vh)",
-      }}
-      className="hidden md:flex flex-col gap-y-10 p-3 border-r min-w-1/6 border-gray-500"
-    >
+    <div className="hidden md:flex h-screen flex-col gap-y-10 p-3 border-r min-w-1/6 border-gray-500">
       <CreateEventButton />
       <SmallCalander />
       <Lable />

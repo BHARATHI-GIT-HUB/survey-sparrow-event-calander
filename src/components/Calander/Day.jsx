@@ -25,57 +25,59 @@ export function Day({ day, rowIndex }) {
   }, [day]);
 
   return (
-    <div className={`border border-gray-200`}>
-      {rowIndex === 0 && (
-        <header className="border-b border-gray-200 p-2 ">
-          <p className="text-sm mt-1">{day.format("ddd").toUpperCase()}</p>
-        </header>
-      )}
-      <div
-        className={`text-sm m-2 px-[5px] p-[4px] max-w-max   ${getCurrentDay(
-          day
-        )}`}
-      >
-        {day.format("DD")}
+    <div className={`border border-gray-200 flex flex-col`}>
+      <div className="flex flex-col items-end border-gray-300">
+        {rowIndex === 0 && (
+          <div className="border-b w-full py-1 px-2">
+            <p className="text-sm mt-1  text-end">
+              {day.format("ddd").toUpperCase()}
+            </p>
+          </div>
+        )}
+
+        <p className={`text-sm p-1 m-2 text-center  ${getCurrentDay(day)}`}>
+          {day.format("DD")}
+        </p>
       </div>
-      <div className="flex flex-col justify-center  gap-y-2 py-2 ">
+
+      <div className="flex-1">
         {events.length > 0 &&
-          events.slice(0, 2).map((e, i) => (
+          events.slice(0, 3).map((e, i) => (
             <div
               key={i}
               style={{ backgroundColor: e.colour }}
-              className={`mx-2 p-1 md:px-2  text-white rounded-[5px] overflow-hidden
+              className={`mx-2 md:px-2 mb-1  text-white rounded-[5px] overflow-hidden
                `}
             >
               <p
-                className={`font-semibold text-xs capitalize
+                className={`text-gray-500 text-sm  truncate capitalize
                ${isEventOver(e) ? "line-through text-gray-600" : ""}`}
               >
                 {e.title}
               </p>
             </div>
           ))}
+        {events.length > 3 && (
+          <>
+            <Modal
+              isModalOpen={isModalOpen}
+              setIsModalOpen={setIsModalOpen}
+              events={events}
+              day={day}
+            />
+            <div
+              className={`mx-2 px-1 rounded-md overflow-hidden cursor-pointer bg-purple-500 `}
+              onClick={() => {
+                setIsModalOpen(true);
+              }}
+            >
+              <button className="font-semibold text-white text-xs">
+                +{events.length - 3} more
+              </button>
+            </div>
+          </>
+        )}
       </div>
-      {events.length > 3 && (
-        <>
-          <Modal
-            isModalOpen={isModalOpen}
-            setIsModalOpen={setIsModalOpen}
-            events={events}
-            day={day}
-          />
-          <div
-            className={`mx-2 px-2 rounded-md overflow-hidden cursor-pointer bg-purple-500 `}
-            onClick={() => {
-              setIsModalOpen(true);
-            }}
-          >
-            <button className="font-semibold text-white text-xs">
-              +{events.length - 2} more
-            </button>
-          </div>
-        </>
-      )}
     </div>
   );
 }

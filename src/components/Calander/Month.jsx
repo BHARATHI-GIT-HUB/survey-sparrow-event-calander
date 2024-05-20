@@ -4,13 +4,7 @@ import { Day } from "./Day";
 
 export function Month({ month }) {
   return (
-    <div
-      style={{
-        minHeight: "calc(100vh - 8vh)",
-        // maxHeight: "calc(100vh - 8vh)",
-      }}
-      className="flex-1 grid grid-cols-7 grid-rows-5 w-full"
-    >
+    <div className="flex-1 grid grid-cols-7 grid-rows-5">
       {month.map((row, i) => (
         <React.Fragment key={i}>
           {row.map((day, j) => (

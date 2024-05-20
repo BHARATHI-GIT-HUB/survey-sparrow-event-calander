@@ -19,14 +19,14 @@ export function Scheduler() {
   }, [monthIndex]);
 
   return (
-    <>
+    <div className="h-screen flex flex-col">
       <Header isSlider={isSlider} setIsSlider={setIsSlider} />
-      <div className="flex">
+      <div className="flex flex-1">
         <div className={`${isSlider ? "hidden" : ""}`}>
           <Sidebar />
         </div>
         <Month month={currentMonthDate} setCurrentMonth={setCurrentMonthDate} />
       </div>
-    </>
+    </div>
   );
 }
