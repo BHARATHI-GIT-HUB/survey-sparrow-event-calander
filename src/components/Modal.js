@@ -5,9 +5,9 @@ import { isEventOver } from "../util";
 export default function Modal({ isModalOpen, setIsModalOpen, events, day }) {
   const eventTypeColors = {
     meeting: "bg-[#34a4eb]",
-    appointment: "bg-green-500",
+    appointment: "bg-green-400",
     reminder: "bg-[#edca4a]",
-    task: "bg-purple-500",
+    task: "bg-purple-400",
   };
 
   const close = () => {

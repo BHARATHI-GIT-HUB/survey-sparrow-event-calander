@@ -10,13 +10,6 @@ export function Day({ day, rowIndex }) {
   const [events, setEvents] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const eventTypeColors = {
-    meeting: "bg-[#34a4eb]",
-    appointment: "bg-green-500",
-    reminder: "bg-[#edca4a]",
-    task: "bg-purple-500",
-  };
-
   const getCurrentDay = (day) => {
     const isCurrentMonthDay = day.month() === monthIndex;
     return isCurrentMonthDay
@@ -50,9 +43,9 @@ export function Day({ day, rowIndex }) {
           events.slice(0, 2).map((e, i) => (
             <div
               key={i}
-              className={`mx-2 p-1 md:px-2  text-white rounded-[5px] overflow-hidden ${
-                eventTypeColors[e.type] || "bg-gray-400"
-              }`}
+              style={{ backgroundColor: e.colour }}
+              className={`mx-2 p-1 md:px-2  text-white rounded-[5px] overflow-hidden
+               `}
             >
               <p
                 className={`font-semibold text-xs capitalize
@@ -72,7 +65,7 @@ export function Day({ day, rowIndex }) {
             day={day}
           />
           <div
-            className={`mx-2 mb-1 p-1 md:px-2 rounded-md overflow-hidden cursor-pointer bg-purple-500 `}
+            className={`mx-2 px-2 rounded-md overflow-hidden cursor-pointer bg-purple-500 `}
             onClick={() => {
               setIsModalOpen(true);
             }}
