@@ -1,15 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import { getMonth } from "../../util";
-import GlobalContext from "../../context/GlobalContext";
-import { handleNextMonth, handlePrevMonth } from "../../util";
+import Context from "../../context/Context";
 import dayjs from "dayjs";
+import { useClick } from "../../hooks/useClick";
+
 export function SmallCalander() {
   const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
 
-  const { smallCalmonthindex, setSmallcalmonthindex, months } =
-    useContext(GlobalContext);
-  const [currentMonth, setCurrentMonth] = React.useState(smallCalmonthindex);
+  const { handleNextMonth, handlePrevMonth } = useClick();
 
+  const { smallCalmonthindex, setSmallcalmonthindex, months } =
+    useContext(Context);
+
+  const [currentMonth, setCurrentMonth] = React.useState(smallCalmonthindex);
   const [currentMonthDate, setCurrentMonthDate] = React.useState(
     getMonth(currentMonth)
   );
@@ -38,8 +41,11 @@ export function SmallCalander() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => {
-                setSmallcalmonthindex(smallCalmonthindex - 1);
-                setCurrentMonth(smallCalmonthindex);
+                handlePrevMonth(
+                  smallCalmonthindex,
+                  setSmallcalmonthindex,
+                  setCurrentMonth
+                );
               }}
               disabled={smallCalmonthindex <= 0 ? true : false}
             >
@@ -52,7 +58,7 @@ export function SmallCalander() {
                 viewBox="0 0 16 16"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"
                 />
               </svg>
@@ -60,8 +66,11 @@ export function SmallCalander() {
 
             <button
               onClick={() => {
-                setSmallcalmonthindex(smallCalmonthindex + 1);
-                setCurrentMonth(smallCalmonthindex);
+                handleNextMonth(
+                  smallCalmonthindex,
+                  setSmallcalmonthindex,
+                  setCurrentMonth
+                );
               }}
               disabled={smallCalmonthindex >= 11 ? true : false}
             >
@@ -74,7 +83,7 @@ export function SmallCalander() {
                 viewBox="0 0 16 16"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
                 />
               </svg>
@@ -93,11 +102,7 @@ export function SmallCalander() {
               {row.map((day, idx) => {
                 return (
                   <React.Fragment key={idx}>
-                    <button
-                      // onClick={setCurrentMonthDate()}
-
-                      className={`text-xs p-[3px] ${getCurrentDay(day)}`}
-                    >
+                    <button className={`text-xs p-[3px] ${getCurrentDay(day)}`}>
                       {day.format("DD")}
                     </button>
                   </React.Fragment>

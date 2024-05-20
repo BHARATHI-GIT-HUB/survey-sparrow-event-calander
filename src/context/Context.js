@@ -1,5 +1,5 @@
 import React from "react";
-const GlobalContext = React.createContext({
+const Context = React.createContext({
   monthIndex: 0,
   smallCalmonthindex: 0,
   setMonthIndex: () => {},
@@ -7,4 +7,4 @@ const GlobalContext = React.createContext({
   months: [],
 });
 
-export default GlobalContext;
+export default Context;

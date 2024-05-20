@@ -1,9 +1,27 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { Month } from "../components/Calander";
+import GlobalContext from "../context/Context";
+import { getMonth } from "../util";
+import dayjs from "dayjs";
+import { useClick } from "../hooks/useClick";
 
-export default function schedular2() {
+export function Scheduler2() {
+  const { monthIndex, setMonthIndex, months } = useContext(GlobalContext);
+  const [currentMonth, setCurrentMonth] = useState(monthIndex);
+  const [isOpen, setIsOpen] = useState(false);
+  const { handleNextMonth, handlePrevMonth } = useClick();
+
+  const [currentMonthDate, setCurrentMonthDate] = useState(
+    getMonth(monthIndex)
+  );
+  useEffect(() => {
+    setCurrentMonthDate(getMonth(monthIndex));
+    setCurrentMonth(monthIndex);
+  }, [monthIndex]);
+
   return (
     <div>
-      {/* <div className="border border-gray-200 border-b-0 rounded-xl flex flex-col items-start font-inter">
+      <div className="border border-gray-200 border-b-0 rounded-xl flex flex-col items-start font-inter ">
         <p className="text-xl p-4">Calender</p>
         <div className="border-y border-gray-200 px-4 py-3 self-start w-full flex justify-between">
           <div className="flex  gap-5">
@@ -22,7 +40,9 @@ export default function schedular2() {
             </button>
             <div className="flex justify-center items-center gap-2">
               <button
-                onClick={handlePrevMonth}
+                onClick={() =>
+                  handlePrevMonth(monthIndex, setMonthIndex, setCurrentMonth)
+                }
                 disabled={monthIndex <= 0 ? true : false}
               >
                 <svg
@@ -43,7 +63,9 @@ export default function schedular2() {
                 {months[currentMonth] + " " + dayjs().year()}
               </p>
               <button
-                onClick={handleNextMonth}
+                onClick={() =>
+                  handleNextMonth(monthIndex, setMonthIndex, setCurrentMonth)
+                }
                 disabled={monthIndex >= 11 ? true : false}
               >
                 <svg
@@ -76,9 +98,9 @@ export default function schedular2() {
                   aria-hidden="true"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   />
                 </svg>
               </button>
@@ -104,8 +126,9 @@ export default function schedular2() {
             )}
           </div>
         </div>
+
         <Month month={currentMonthDate} setCurrentMonth={setCurrentMonthDate} />
-      </div> */}
+      </div>
     </div>
   );
 }

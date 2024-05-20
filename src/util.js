@@ -52,12 +52,12 @@ export const sortEvent = (events) => {
   });
 };
 
-export function handlePrevMonth(monthIndex, setMonthIndex, setCurrentMonth) {
+export const handlePrevMonth = (monthIndex, setMonthIndex, setCurrentMonth) => {
   setMonthIndex(monthIndex - 1);
   setCurrentMonth(monthIndex - 1);
-}
+};
 
-export function handleNextMonth(monthIndex, setMonthIndex, setCurrentMonth) {
+export const handleNextMonth = (monthIndex, setMonthIndex, setCurrentMonth) => {
   setMonthIndex(monthIndex + 1);
   setCurrentMonth(monthIndex + 1);
-}
+};

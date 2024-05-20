@@ -1,32 +1,25 @@
 import React, { useState, useEffect } from "react";
-import logo from "../assets/images/logo.png";
-import GlobalContext from "../context/GlobalContext";
-import { handlePrevMonth } from "../util";
+import GlobalContext from "../context/Context";
 import { getMonth } from "../util";
-export default function Header({ month, year, isSlider, setIsSlider }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+import logo from "../assets/images/logo.png";
+import { useClick } from "../hooks/useClick";
+export default function Header({ isSlider, setIsSlider }) {
   const { monthIndex, setMonthIndex, months } = React.useContext(GlobalContext);
+
+  const { handleNextMonth, handlePrevMonth } = useClick();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdown, setIsdropdown] = React.useState(false);
+  const [sidebarOpen, setSidebarOpen] = React.useState(true);
+
   const [currentMonth, setCurrentMonth] = React.useState(monthIndex);
-  const [isOpen, setIsOpen] = React.useState(false);
   const [currentMonthDate, setCurrentMonthDate] = React.useState(
     getMonth(monthIndex)
   );
-  const [sidebarOpen, setSidebarOpen] = React.useState(true);
+
   useEffect(() => {
     setCurrentMonthDate(getMonth(monthIndex));
     setCurrentMonth(monthIndex);
   }, [monthIndex]);
-
-  const handlePrevMonth = () => {
-    setMonthIndex(monthIndex - 1);
-    setCurrentMonth(monthIndex - 1);
-  };
-
-  const handleNextMonth = () => {
-    setMonthIndex(monthIndex + 1);
-    setCurrentMonth(monthIndex + 1);
-  };
 
   return (
     <>
@@ -46,7 +39,7 @@ export default function Header({ month, year, isSlider, setIsSlider }) {
               viewBox="0 0 16 16"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
               />
             </svg>
@@ -56,10 +49,7 @@ export default function Header({ month, year, isSlider, setIsSlider }) {
             <h3 className="text-2xl font-light text-gray-500">Calander</h3>
           </div>
           <div className="flex items-center gap-10 ">
-            <button
-              onClick={handleNextMonth}
-              className="border flex gap-3 items-center rounded-md border-gray-200 p-2"
-            >
+            <button className="border flex gap-3 items-center rounded-md border-gray-200 p-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="15"
@@ -74,7 +64,9 @@ export default function Header({ month, year, isSlider, setIsSlider }) {
             </button>
             <div className="flex items-center gap-2">
               <button
-                onClick={handlePrevMonth}
+                onClick={() =>
+                  handlePrevMonth(monthIndex, setMonthIndex, setCurrentMonth)
+                }
                 disabled={monthIndex <= 0 ? true : false}
               >
                 <svg
@@ -82,18 +74,20 @@ export default function Header({ month, year, isSlider, setIsSlider }) {
                   width="20"
                   height="20"
                   fill="currentColor"
-                  class="bi bi-chevron-left"
+                  className="bi bi-chevron-left"
                   viewBox="0 0 16 16"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"
                   />
                 </svg>
               </button>
 
               <button
-                onClick={handleNextMonth}
+                onClick={() =>
+                  handleNextMonth(monthIndex, setMonthIndex, setCurrentMonth)
+                }
                 disabled={monthIndex >= 11 ? true : false}
               >
                 <svg
@@ -105,7 +99,7 @@ export default function Header({ month, year, isSlider, setIsSlider }) {
                   viewBox="0 0 16 16"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
                   />
                 </svg>
@@ -120,7 +114,7 @@ export default function Header({ month, year, isSlider, setIsSlider }) {
           <div>
             <button
               className="inline-flex w-full justify-center gap-x-1.5 rounded-md  px-3 py-2 text-sm font-semibold text-gray-600 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={() => setIsdropdown(!isDropdown)}
             >
               Months
               <svg
@@ -130,14 +124,14 @@ export default function Header({ month, year, isSlider, setIsSlider }) {
                 aria-hidden="true"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 />
               </svg>
             </button>
           </div>
-          {isOpen && (
+          {isDropdown && (
             <div className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="py-1" role="none">
                 {months.map((m, i) => (
@@ -147,7 +141,7 @@ export default function Header({ month, year, isSlider, setIsSlider }) {
                     onClick={() => {
                       setMonthIndex(i);
                       setCurrentMonth(i);
-                      setIsOpen(false);
+                      setIsdropdown(false);
                     }}
                   >
                     {m}

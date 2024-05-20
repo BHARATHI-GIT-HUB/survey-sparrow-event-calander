@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/SideBar";
 import { Month } from "../components/Calander";
-import GlobalContext from "../context/GlobalContext";
+import GlobalContext from "../context/Context";
 import { getMonth } from "../util";
 
 export function Scheduler() {
@@ -18,23 +18,9 @@ export function Scheduler() {
     setCurrentMonth(monthIndex);
   }, [monthIndex]);
 
-  const handlePrevMonth = () => {
-    setMonthIndex(monthIndex - 1);
-    setCurrentMonth(monthIndex - 1);
-  };
-
-  const handleNextMonth = () => {
-    setMonthIndex(monthIndex + 1);
-    setCurrentMonth(monthIndex + 1);
-  };
   return (
     <>
-      <Header
-        month={"May"}
-        year={"2024"}
-        isSlider={isSlider}
-        setIsSlider={setIsSlider}
-      />
+      <Header isSlider={isSlider} setIsSlider={setIsSlider} />
       <div className="flex">
         <div className={`${isSlider ? "hidden" : ""}`}>
           <Sidebar />

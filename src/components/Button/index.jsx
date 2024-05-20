@@ -1,1 +1,1 @@
-export { CreateEventButton } from "./CreateEventBtn";
+export { CreateEventButton } from "./CreateEvent";

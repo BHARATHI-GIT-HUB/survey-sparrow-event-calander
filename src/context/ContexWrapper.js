@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-import GlobalContext from "./GlobalContext";
+import Context from "./Context";
 
 export default function ContexWrapper(props) {
   const [monthIndex, setMonthIndex] = useState(dayjs().month());
@@ -22,7 +22,7 @@ export default function ContexWrapper(props) {
     "December",
   ];
   return (
-    <GlobalContext.Provider
+    <Context.Provider
       value={{
         monthIndex,
         smallCalmonthindex,
@@ -32,7 +32,7 @@ export default function ContexWrapper(props) {
       }}
     >
       {props.children}
-    </GlobalContext.Provider>
+    </Context.Provider>
   );
 }
 
