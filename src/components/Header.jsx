@@ -44,12 +44,12 @@ export default function Header({ isSlider, setIsSlider }) {
               />
             </svg>
           </button>
-          <div className="flex items-center gap-3 mx-4">
+          <div className="hidden md:flex items-center gap-3 mx-4">
             <img src={logo} alt="logo" className="w-10 h-10" />
             <h3 className="text-2xl font-light text-gray-500">Calander</h3>
           </div>
           <div className="flex items-center gap-10 ">
-            <button className="border flex gap-3 items-center rounded-md border-gray-200 p-2">
+            <button className="border hidden md:flex gap-3 items-center rounded-md border-gray-200 p-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="15"
@@ -113,7 +113,7 @@ export default function Header({ isSlider, setIsSlider }) {
         <div className="relative inline-block text-left">
           <div>
             <button
-              className="inline-flex w-full justify-center gap-x-1.5 rounded-md  px-3 py-2 text-sm font-semibold text-gray-600 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+              className=" hidden md:flex  w-full justify-center gap-x-1.5 rounded-md  px-3 py-2 text-sm font-semibold text-gray-600 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
               onClick={() => setIsdropdown(!isDropdown)}
             >
               Months

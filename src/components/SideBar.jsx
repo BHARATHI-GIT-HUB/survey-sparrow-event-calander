@@ -10,7 +10,7 @@ export default function Sidebar({ isSlider, setIsSlider }) {
         minHeight: "calc(100vh - 8vh)",
         maxHeight: "calc(100vh - 8vh)",
       }}
-      className="flex flex-col gap-y-10 p-3 border-r min-w-1/6 border-gray-500"
+      className="hidden md:flex flex-col gap-y-10 p-3 border-r min-w-1/6 border-gray-500"
     >
       <CreateEventButton />
       <SmallCalander />

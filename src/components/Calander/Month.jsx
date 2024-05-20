@@ -7,7 +7,7 @@ export function Month({ month }) {
     <div
       style={{
         minHeight: "calc(100vh - 8vh)",
-        maxHeight: "calc(100vh - 8vh)",
+        // maxHeight: "calc(100vh - 8vh)",
       }}
       className="flex-1 grid grid-cols-7 grid-rows-5 w-full"
     >
