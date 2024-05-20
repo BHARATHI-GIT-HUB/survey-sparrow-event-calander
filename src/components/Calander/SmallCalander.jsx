@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { getMonth } from "../util";
-import GlobalContext from "../context/GlobalContext";
-import { handleNextMonth, handlePrevMonth } from "../util";
+import { getMonth } from "../../util";
+import GlobalContext from "../../context/GlobalContext";
+import { handleNextMonth, handlePrevMonth } from "../../util";
 import dayjs from "dayjs";
-export default function SmallCalander() {
+export function SmallCalander() {
   const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
 
   const { smallCalmonthindex, setSmallcalmonthindex, months } =
@@ -18,7 +18,7 @@ export default function SmallCalander() {
     const isCurrentMonthDay = day.month() === smallCalmonthindex;
     return isCurrentMonthDay
       ? day.format("YYYY-MM-DD") === dayjs().format("YYYY-MM-DD")
-        ? "bg-blue-200 rounded-full  p-1"
+        ? "bg-blue-200 rounded-full "
         : ""
       : "text-gray-400";
   };
@@ -41,7 +41,7 @@ export default function SmallCalander() {
                 setSmallcalmonthindex(smallCalmonthindex - 1);
                 setCurrentMonth(smallCalmonthindex);
               }}
-              // disabled={monthIndex <= 0 ? true : false}
+              disabled={smallCalmonthindex <= 0 ? true : false}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +63,7 @@ export default function SmallCalander() {
                 setSmallcalmonthindex(smallCalmonthindex + 1);
                 setCurrentMonth(smallCalmonthindex);
               }}
-              // disabled={monthIndex >= 11 ? true : false}
+              disabled={smallCalmonthindex >= 11 ? true : false}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +96,7 @@ export default function SmallCalander() {
                     <button
                       // onClick={setCurrentMonthDate()}
 
-                      className={`text-xs ${getCurrentDay(day)}`}
+                      className={`text-xs p-[3px] ${getCurrentDay(day)}`}
                     >
                       {day.format("DD")}
                     </button>

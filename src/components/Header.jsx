@@ -3,7 +3,7 @@ import logo from "../assets/images/logo.png";
 import GlobalContext from "../context/GlobalContext";
 import { handlePrevMonth } from "../util";
 import { getMonth } from "../util";
-export default function Header({ month, year }) {
+export default function Header({ month, year, isSlider, setIsSlider }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const { monthIndex, setMonthIndex, months } = React.useContext(GlobalContext);
@@ -32,7 +32,11 @@ export default function Header({ month, year }) {
     <>
       <div className="flex justify-between items-center border-b border-gray-300 px-5 py-3 sticky top-0 bg-white ">
         <div className="flex items-center gap-3">
-          <button>
+          <button
+            onClick={() => {
+              setIsSlider(!isSlider);
+            }}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -71,7 +75,7 @@ export default function Header({ month, year }) {
             <div className="flex items-center gap-2">
               <button
                 onClick={handlePrevMonth}
-                // disabled={monthIndex <= 0 ? true : false}
+                disabled={monthIndex <= 0 ? true : false}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +94,7 @@ export default function Header({ month, year }) {
 
               <button
                 onClick={handleNextMonth}
-                // disabled={monthIndex >= 11 ? true : false}
+                disabled={monthIndex >= 11 ? true : false}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

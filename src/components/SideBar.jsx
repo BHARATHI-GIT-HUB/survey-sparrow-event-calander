@@ -1,11 +1,11 @@
 import React from "react";
-import CreateEventButton from "./CreateEventBtn";
-import SmallCalander from "./SmallCalander";
+import { CreateEventButton } from "./Button/";
+import { SmallCalander } from "./Calander/";
 import Lable from "./Lable";
 
-export default function Sidebar() {
+export default function Sidebar({ isSlider, setIsSlider }) {
   return (
-    <div className="h-screen flex flex-col gap-y-10 p-3 border-r w-1/6 border-gray-500 ">
+    <div className="h-screen flex flex-col gap-y-10 p-3 border-r min-w-1/6 border-gray-500 ">
       <CreateEventButton />
       <SmallCalander />
       <Lable />

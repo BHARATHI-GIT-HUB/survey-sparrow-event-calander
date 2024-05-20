@@ -79,4 +79,44 @@ export const data = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis voluptatem dolorem neque nulla natus pariatur ex, unde minima perspiciatis voluptas cumque eos iste nihil. Laboriosam minus omnis repellat aspernatur corporis.",
   },
+  {
+    title: "meetting in hall",
+    colour: "#FF0000",
+    date: "2024-05-20",
+    type: "meeting",
+    startTime: "12:00 PM",
+    endTime: "1:00 PM",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis voluptatem dolorem neque nulla natus pariatur ex, unde minima perspiciatis voluptas cumque eos iste nihil. Laboriosam minus omnis repellat aspernatur corporis.",
+  },
+  {
+    title: "meetting in room",
+    colour: "#FF0000",
+    date: "2024-05-20",
+    type: "meeting",
+    startTime: "2:00 PM",
+    endTime: "3:50 PM",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis voluptatem dolorem neque nulla natus pariatur ex, unde minima perspiciatis voluptas cumque eos iste nihil. Laboriosam minus omnis repellat aspernatur corporis.",
+  },
+  {
+    title: "water ",
+    colour: "#FF0000",
+    date: "2024-05-20",
+    type: "reminder",
+    startTime: "6:00 PM ",
+    endTime: "7:50 PM",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis voluptatem dolorem neque nulla natus pariatur ex, unde minima perspiciatis voluptas cumque eos iste nihil. Laboriosam minus omnis repellat aspernatur corporis.",
+  },
+  {
+    title: "lunch",
+    colour: "#FF0000",
+    date: "2024-05-20",
+    type: "task",
+    startTime: "4:00 PM",
+    endTime: "5:50 PM",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis voluptatem dolorem neque nulla natus pariatur ex, unde minima perspiciatis voluptas cumque eos iste nihil. Laboriosam minus omnis repellat aspernatur corporis.",
+  },
 ];

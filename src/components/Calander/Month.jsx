@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Day from "./Day";
+import { Day } from "./Day";
 
-export default function Month({ month }) {
+export function Month({ month }) {
   return (
-    <div className="flex-1 grid grid-cols-7 grid-rows-5 w-full">
+    <div className="flex-1 grid grid-cols-7 grid-rows-5 min-h-screen">
       {month.map((row, i) => (
         <React.Fragment key={i}>
           {row.map((day, j) => (

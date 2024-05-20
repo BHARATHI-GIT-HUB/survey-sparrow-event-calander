@@ -32,6 +32,26 @@ export const isEventOver = (event) => {
   return currentTime.isAfter(startTime) && currentTime.isAfter(endTime);
 };
 
+export const sortEvent = (events) => {
+  return events.sort((firstEvent, secondEvent) => {
+    const firstStartTime = dayjs(
+      firstEvent.date + " " + firstEvent.startTime,
+      "YYYY-MM-DD hh:mm A",
+      true
+    );
+    const secondStartTime = dayjs(
+      secondEvent.date + " " + secondEvent.startTime,
+      "YYYY-MM-DD hh:mm A",
+      true
+    );
+    return firstStartTime > secondStartTime
+      ? 1
+      : firstStartTime < secondStartTime
+      ? -1
+      : 0;
+  });
+};
+
 export function handlePrevMonth(monthIndex, setMonthIndex, setCurrentMonth) {
   setMonthIndex(monthIndex - 1);
   setCurrentMonth(monthIndex - 1);
